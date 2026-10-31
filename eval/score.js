@@ -58,13 +58,13 @@ async function checkCard(card, label) {
   const page = await openPage(card.citedUrl);
   if (page === null) return 'source_would_not_open';
   if (!comparable(page).includes(comparable(card.quote))) return 'quote_not_on_page';
-  const { supports } = await completeJson(supportPrompt(label, hostOf(card.citedUrl), card.quote), { tier: 'careful' });
+  const { supports } = await completeJson(supportPrompt(label, hostOf(card.citedUrl), card.quote));
   return supports ? 'agree' : 'source_does_not_support';
 }
 
 export async function scoreScenario(scenario, cards) {
   const { matches } = cards.length
-    ? await completeJson(matchPrompt(scenario.claims, cards), { tier: 'careful' })
+    ? await completeJson(matchPrompt(scenario.claims, cards))
     : { matches: [] };
   const labelOf = new Map(matches.map((match) => [match.card - 1, match.label]));
   const known = new Set(scenario.claims.map((label) => label.id));
