@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClaimCheck</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <main id="call">
+      <section id="said" aria-label="What's being said">
+        <p id="said-empty" class="empty">What you both say appears here.</p>
+        <ol id="lyrics" aria-live="polite"></ol>
+        <footer id="bar">
+          <p id="status" role="status"></p>
+          <button id="mute" type="button" hidden>Mute</button>
+        </footer>
+      </section>
+      <aside id="checked" aria-label="Fact checks">
+        <p id="checked-empty" class="empty">Factual claims appear here with their sources.</p>
+        <ol id="claims"></ol>
+      </aside>
+    </main>
+
+    <div id="join">
+      <h1>Talk it out. The sources show up as you go.</h1>
+      <button id="join-button" type="button">Join call</button>
+      <p id="invite"></p>
+    </div>
+
+    <audio id="speaker" autoplay></audio>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
