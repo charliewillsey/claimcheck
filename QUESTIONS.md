@@ -15,3 +15,15 @@ Answer inline under each. Build starts once these are answered.
 
 ## Answers
 
+### Malcolm's defaults 2026-10-30, Charlie has not confirmed
+
+1. **Test scenarios.** The build agent drafts 5 scenarios.
+2. **Labels / what "good" means.** A claim agrees only if the verdict matches AND a cited source is reputable and supports it. Scored per claim.
+3. **Speech-to-text.** Local Whisper base model in short chunks, because the Deepgram key is dead.
+4. **Fact-check engine.** claude CLI on Malcolm's login plus Firecrawl search, localhost only.
+5. **"Reputable sites."** Hard allowlist in one file: .gov, .edu, AP, Reuters, BBC, Nature, Science, NEJM, Britannica, WHO.
+6. **Latency.** Target under 10s, logged not gated.
+7. **What counts as a claim.** Checkable facts only.
+8. **Who sees the right panel.** Both callers see the same split view.
+9. **Test harness.** Yes.
+10. **Name + Supabase.** Keep the name, no Supabase, calls ephemeral.
