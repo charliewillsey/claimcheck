@@ -12,3 +12,6 @@ A run counts toward the gate only if the whole run and every one of the 5 scenar
 | 4 | 2026-10-31 06:04 | 01 5/5, 02 5/5, 03 6/7, 04 6/6, 05 5/6 | 93.1% PASS | 27/29 | 4.1s | Separate skeptical check picks a quote that settles the claim alone, or rejects them all; six pages read per claim | 03 c5 source_does_not_support; 05 c5 wrong_verdict |
 | 5 | 2026-10-31 06:13 | 01 5/5, 02 5/5, 03 5/7, 04 6/6, 05 5/6 | 89.7% FAIL | 26/29 | 4.1s | No code change, same build as run 4 (4a6d679) | 03 c3 source_does_not_support; 03 c5 wrong_verdict; 05 c5 wrong_verdict |
 | 6 | 2026-10-31 06:22 | 01 5/5, 02 5/5, 03 6/7, 04 6/6, 05 5/6 | 93.1% PASS | 27/29 | 4.0s | No code change, same build as run 4 (4a6d679) | 03 c5 wrong_verdict; 05 c5 wrong_verdict |
+| 7 | 2026-10-31 06:39 | 01 5/5, 02 5/5, 03 5/7, 04 6/6, 05 6/6 | 93.1% FAIL | 27/29 | 4.1s | Passage picker keeps questions with their answers, drops repeats, always includes the page opening (build 78b5d02) | 03 c2 source_does_not_support; 03 c5 wrong_verdict |
+| 8 | 2026-10-31 06:48 | 01 5/5, 02 5/5, 03 6/7, 04 6/6, 05 6/7 | 93.3% PASS | 28/29 | 3.9s | No code change, same build as run 7 (78b5d02) | 03 c5 wrong_verdict; 05 false positive |
+| 9 | 2026-10-31 06:57 | 01 5/5, 02 5/5, 03 6/7, 04 6/6, 05 6/6 | 96.6% PASS | 28/29 | 3.8s | No code change, same build as run 7 (78b5d02) | 03 c5 wrong_verdict |
