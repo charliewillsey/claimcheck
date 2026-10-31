@@ -97,3 +97,5 @@ IDLE 2026-10-31T02:56:08Z — no new commits
 IDLE 2026-10-31T03:55:56Z — no new commits
 
 IDLE 2026-10-31T04:55:36Z — no new commits
+
+OK 2026-10-31T05:57:01Z — 12 new builder commits: two-panel WebRTC call + local Whisper transcript + claim/source panel + eval harness, all in MVP scope, no ROADMAP creep. Eval 47.8% → 86.7% → 80% (gate needs ≥75% in every scenario; 01 stuck at 4/6 all 3 runs). WATCH: (a) post-run-3 commit adds a 3rd model pass (skeptical proof check) and more pages read, not yet evaluated — if run 4 does not beat 86.7%, simplify rather than stack more checks; (b) labels are builder-authored DRAFT and Malcolm defaults unconfirmed by Charlie, so no run can count toward the gate as final until founders confirm (PROMPT Done #3).
