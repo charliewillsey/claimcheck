@@ -152,4 +152,58 @@ function centerOn(item) {
   $('lyrics').style.transform = `translateY(${offset}px)`;
 }
 
-function renderClaim() {}
+const VERDICT_WORDS = { supported: 'Supported', disputed: 'Disputed', unverified: 'Unverified' };
+
+function claimItem(claim) {
+  const existing = $('claims').querySelector(`[data-claim-id="${claim.id}"]`);
+  if (existing) return existing;
+  const item = document.createElement('li');
+  item.className = 'claim';
+  item.dataset.claimId = claim.id;
+  item.dataset.speaker = claim.speaker;
+  item.dataset.lineId = claim.lineId;
+  for (const part of ['verdict', 'said', 'reason']) {
+    item.append(Object.assign(document.createElement('p'), { className: part }));
+  }
+  item.append(document.createElement('blockquote'), Object.assign(document.createElement('ul'), { className: 'sources' }));
+  $('claims').prepend(item);
+  return item;
+}
+
+function renderClaim(claim) {
+  $('checked-empty').hidden = true;
+  const item = claimItem(claim);
+  item.dataset.verdict = claim.verdict ?? 'checking';
+  item.querySelector('.verdict').textContent = VERDICT_WORDS[claim.verdict] ?? 'Checking sources';
+  item.querySelector('.said').textContent = claim.text;
+  item.querySelector('.reason').textContent = claim.reason ?? '';
+  item.querySelector('blockquote').textContent = claim.cited?.quote ?? '';
+  item.querySelector('blockquote').hidden = !claim.cited;
+
+  const links = item.querySelector('.sources');
+  const shown = claim.cited ? [claim.cited] : claim.sources.slice(0, 3);
+  links.replaceChildren(...shown.map((source) => {
+    const link = Object.assign(document.createElement('a'), {
+      href: source.url,
+      textContent: source.host,
+      title: source.title ?? source.host,
+      target: '_blank',
+      rel: 'noopener noreferrer',
+    });
+    if (claim.cited) link.className = 'cited';
+    const row = document.createElement('li');
+    row.append(link);
+    return row;
+  }));
+
+  if (claim.sources.length && !item.dataset.sourced) {
+    item.dataset.sourced = 'true';
+    note('first-source', { claimId: claim.id });
+  }
+  if (claim.verdict && !item.dataset.decided) {
+    item.dataset.decided = 'true';
+    note('verdict', { claimId: claim.id });
+    const said = $('lyrics').querySelector(`[data-line-id="${claim.lineId}"]`);
+    if (said && claim.verdict !== 'unverified') said.dataset.verdict = claim.verdict;
+  }
+}
