@@ -151,6 +151,8 @@ async function main() {
       const summary = (panel) => JSON.stringify(panel.cards.map(({ id, text, verdict, citedUrl }) => ({ id, text, verdict, citedUrl })));
       results.push({ scenario, score, panelA, timings, panelsMatch: summary(panelA) === summary(panelB) });
       console.log(`  ${score.agreed}/${score.total} agreed`);
+      for (const label of score.labels.filter((item) => item.status !== 'agree')) console.log(`  ${label.id} ${label.status}`);
+      for (const card of score.falsePositives) console.log(`  false positive: ${card.text}`);
     }
   } finally {
     server.kill();
