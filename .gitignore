@@ -1,0 +1,18 @@
+# secrets
+.env
+.env.*
+
+# dependencies and build output
+node_modules/
+.next/
+dist/
+out/
+
+# goal-run logs and generated audio
+*.log
+*.condition.txt
+test-results/
+playwright-report/
+*.wav
+*.aiff
+.DS_Store
